@@ -1,5 +1,21 @@
-require('dotenv').config()
+require("dotenv").config();
 
-const { checkDBConnection } = require('./database')
+const express = require("express");
 
-checkDBConnection()
+const { checkDBConnection, syncModels } = require("./database");
+
+const startDB = async () => {
+  await checkDBConnection();
+//   await defineRelations();
+  syncModels();
+};
+
+const app = express();
+app.use(express.json());
+
+// app.use("/api", router);
+
+app.listen(process.env.PORT, () => {
+  console.log(`Express started, listening on port ${process.env.PORT}`);
+  startDB();
+});
