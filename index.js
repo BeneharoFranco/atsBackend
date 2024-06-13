@@ -3,12 +3,13 @@ require("dotenv").config();
 const express = require("express");
 
 const { checkDBConnection, syncModels } = require("./database");
+const defineRelations = require("./database/relations");
 const User = require("./api/models/user.model");
 const Candidate = require("./api/models/candidate.model");
 
 const startDB = async () => {
   await checkDBConnection();
-//   await defineRelations();
+  await defineRelations();
   syncModels();
 };
 
