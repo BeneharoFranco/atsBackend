@@ -1,4 +1,5 @@
 const JobOpening = require("../models/job_opening.model");
+const Company = require("../models/company.model");
 
 const getAllJobOpening = async (req, res) => {
   try {
@@ -26,10 +27,16 @@ const getOneJobOpening = async (req, res) => {
 
 const createJobOpening = async (req, res) => {
   try {
-    const jobOpening = await JobOpening.create(req.body);
-    res.json({
-      result: jobOpening,
-    });
+    const company = await Company.findByPk(req.body.companyId)
+    if(company != null){
+        const jobOpening = await JobOpening.create(req.body);
+        res.json({
+          result: jobOpening,
+        });
+    } else{
+        return res.status(404).send('Company not found')
+    }
+    
   } catch (error) {
     res.json(error);
   }
@@ -37,17 +44,28 @@ const createJobOpening = async (req, res) => {
 
 async function updateJobOpening(req, res) {
 	try {
-		const [jobOpeningExist, jobOpening] = await JobOpening.update(req.body, {
-			returning: true,
-			where: {
-				id: req.params.id,
-			},
-		})
-        if (jobOpeningExist !== 0) {
-			return res.status(200).json({ message: 'JobOpening updated', jobOpening: jobOpening })
-		} else {
-			return res.status(404).send('JobOpening not found')
-		}
+        let update = true;
+        if(req.body.companyId){
+            const company = await Company.findByPk(req.body.companyId)
+            if(company == null)
+                update = false;
+        }
+
+        if(update){
+            const [jobOpeningExist, jobOpening] = await JobOpening.update(req.body, {
+                returning: true,
+                where: {
+                    id: req.params.id,
+                },
+            })
+            if (jobOpeningExist !== 0) {
+                return res.status(200).json({ message: 'JobOpening updated', jobOpening: jobOpening })
+            } else {
+                return res.status(404).send('JobOpening not found')
+            }
+        } else{
+            return res.status(404).send('Company not found')
+        }
 	} catch (error) {
 		return res.status(500).send(error.message)
 	}

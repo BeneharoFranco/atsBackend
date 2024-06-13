@@ -9,12 +9,12 @@ const defineRelations = () => {
   //   Contact.belongsTo(User) //Will have the foreign key 'userId'
 
   //ONE TO MANY
-  Company.hasMany(JobOpening)
-  JobOpening.belongsTo(Company)
+  Company.hasMany(JobOpening, {onDelete: 'cascade', onUpdate: 'cascade'})
+  JobOpening.belongsTo(Company, {onDelete: 'cascade', onUpdate: 'cascade'})
 
   // MANY TO MANY
-  Candidate.belongsToMany(JobOpening, { through: Application });
-  JobOpening.belongsToMany(Candidate, { through: Application });
+  Candidate.belongsToMany(JobOpening, { through: Application, onDelete: 'cascade', onUpdate: 'cascade' });
+  JobOpening.belongsToMany(Candidate, { through: Application, onDelete: 'cascade', onUpdate: 'cascade' });
   
 
 
