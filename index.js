@@ -15,7 +15,7 @@ const startDB = async () => {
 const app = express();
 app.use(express.json());
 
-app.use("/api", router);
+app.use("/api", router); // http://localhost:3000/api/
 
 app.listen(process.env.PORT, () => {
   console.log(`Express started, listening on port ${process.env.PORT}`);

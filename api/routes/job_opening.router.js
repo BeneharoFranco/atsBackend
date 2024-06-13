@@ -15,3 +15,13 @@ router.put('/:id', updateJobOpening)
 router.delete('/:id', deleteJobOpening)
 
 module.exports = router;
+
+// Body
+// {
+//     "title": "prueba",
+//     "description": "description",
+//     "location": "location",
+//     "status": "status",
+//     "end_date": "2024-06-13",
+//     "companyId": 1
+// }
