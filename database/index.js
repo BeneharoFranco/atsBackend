@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 const { Sequelize } = require("sequelize");
 
 const connection = new Sequelize(
@@ -38,4 +36,3 @@ module.exports = {
     checkDBConnection,
     syncModels,
 }
->>>>>>> dev
