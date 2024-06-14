@@ -7,6 +7,8 @@
 const Candidate = require("../api/models/candidate.model");
 const JobOpening = require("../api/models/job_opening.model");
 const Application = require("../api/models/application.model");
+const User = require("../api/models/user.model");
+const Assignment = require("../api/models/assignment.model");
 
 const defineRelations = () => {
   //ONE TO ONE
@@ -20,6 +22,9 @@ const defineRelations = () => {
   // MANY TO MANY
   Candidate.belongsToMany(JobOpening, { through: Application });
   JobOpening.belongsToMany(Candidate, { through: Application });
+
+  User.belongsToMany(JobOpening, { through: Assignment });
+  JobOpening.belongsToMany(User, { through: Assignment });
 
   console.log("Relations defined");
 };
