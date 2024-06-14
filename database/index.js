@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 const { Sequelize } = require("sequelize");
 
 const connection = new Sequelize(
@@ -23,7 +25,8 @@ const checkDBConnection = async () => {
 
 const syncModels = async () => {
   try {
-    await connection.sync("force");
+    await connection.sync();
+    // await connection.sync({ force: true });
     console.log("All models were synchronized successfully.");
   } catch (error) {
     console.log(error);
@@ -35,3 +38,4 @@ module.exports = {
     checkDBConnection,
     syncModels,
 }
+>>>>>>> dev
