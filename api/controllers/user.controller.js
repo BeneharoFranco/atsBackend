@@ -28,7 +28,7 @@ const getOneUser = async (req, res) => {
 };
 
 // CREATING A NEW USER
-const createUser = async (req, res) => {
+/* const createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
     res.status(200).json({
@@ -36,6 +36,16 @@ const createUser = async (req, res) => {
     });
   } catch (error) {
     res.json("This error: " + error);
+  }
+}; */
+const createUser = async (req, res) => {
+  try {
+    const user = await User.create(req.body);
+    res.status(200).json({
+      result: user,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "There was an error: " + error });
   }
 };
 
