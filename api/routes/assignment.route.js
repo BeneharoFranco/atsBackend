@@ -8,10 +8,10 @@ const {
   deleteAssignment
 } = require("../controllers/assignment.controller");
 
-router.get("/user", getAllAssignments);
-router.get("/user:id", getOneAssignment);
-router.post("/user", createAssignment);
-router.put("/user:id", updateAssignment);
-router.delete("/user:id", deleteAssignment);
+router.get("/", getAllAssignments);
+router.get("/:id", getOneAssignment);
+router.post("/", createAssignment);
+router.put("/:id", updateAssignment);
+router.delete("/:id", deleteAssignment);
 
 module.exports = router;

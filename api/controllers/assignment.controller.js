@@ -28,7 +28,7 @@ const getOneAssignment = async (req, res) => {
   }
 };
 
-const createAssignment = async (req, res) => {
+const createAssignment = async (req, res) => {//   FALTA 
   try {
     
   } catch (error) {
@@ -36,7 +36,7 @@ const createAssignment = async (req, res) => {
   }
 };
 
-async function updateAssignment(req, res) {
+async function updateAssignment(req, res) {//   FALTA
  try {
     
  } catch (error) {
