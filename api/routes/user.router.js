@@ -15,3 +15,13 @@ router.put("/:id", updateUser);
 router.delete("/:id", deleteUser);
 
 module.exports = router;
+
+
+/* {
+  "first_name": "Chicho",
+  "last_name": "Terremoto",
+  "email": "trespuntoscolega@gmail.com",
+  "phone": 600700800,
+  "password": "blanquitas",
+  "valid": true
+} */
