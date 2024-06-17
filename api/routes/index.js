@@ -9,7 +9,7 @@ const assign =  require('./assignment.route')
 
 router.use('/jobOpening', jobOpeningRouter)
 router.use('/application', applicationRouter)
-router.use('./company', companyRouter)
+router.use('/company', companyRouter)
 router.use('/user', userRouter)
 router.use('/assign', assign)
 
