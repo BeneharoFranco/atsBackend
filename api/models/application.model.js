@@ -4,6 +4,12 @@ const { connection } = require("../../database");
 const Application = connection.define(
   "application",
   {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
     comments: {
       type: DataTypes.TEXT,
     },
