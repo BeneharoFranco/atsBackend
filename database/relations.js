@@ -2,6 +2,8 @@ const Candidate = require("../api/models/candidate.model");
 const JobOpening = require("../api/models/job_opening.model");
 const Application = require("../api/models/application.model");
 const Company = require("../api/models/company.model");
+const User = require("../api/models/user.model");
+const Assignment = require("../api/models/assignment.model");
 
 const defineRelations = () => {
   //ONE TO ONE
@@ -15,6 +17,9 @@ const defineRelations = () => {
   // MANY TO MANY
   Candidate.belongsToMany(JobOpening, { through: Application, onDelete: 'cascade', onUpdate: 'cascade' });
   JobOpening.belongsToMany(Candidate, { through: Application, onDelete: 'cascade', onUpdate: 'cascade' });
+
+    User.belongsToMany(JobOpening, { through: Assignment });
+    JobOpening.belongsToMany(User, { through: Assignment });
   
 
 
