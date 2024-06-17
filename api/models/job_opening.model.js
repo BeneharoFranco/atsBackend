@@ -1,4 +1,6 @@
-const { DataTypes } = require("sequelize");
+<<<<<<< HEAD
+=======
+const { DataTypes, Sequelize } = require("sequelize");
 const { connection } = require("../../database");
 
 const JobOpening = connection.define(
@@ -6,6 +8,7 @@ const JobOpening = connection.define(
   {
     title: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     description: {
       type: DataTypes.TEXT,
@@ -15,9 +18,12 @@ const JobOpening = connection.define(
     },
     posting_date: {
       type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.NOW,
     },
     status: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     end_date: {
       type: DataTypes.DATE,
@@ -29,3 +35,4 @@ const JobOpening = connection.define(
 );
 
 module.exports = JobOpening;
+>>>>>>> dev
