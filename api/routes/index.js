@@ -6,6 +6,6 @@ const companyRouter = require("./company.router")
 
 router.use('/jobOpening', jobOpeningRouter)
 router.use('/application', applicationRouter)
-router.use('./company', companyRouter)
+router.use('/company', companyRouter)
 
 module.exports = router
