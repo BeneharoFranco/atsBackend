@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 const { DataTypes, Sequelize } = require("sequelize");
 const { connection } = require("../../database");
 
@@ -35,4 +33,3 @@ const JobOpening = connection.define(
 );
 
 module.exports = JobOpening;
->>>>>>> dev
