@@ -14,6 +14,12 @@ const Company = connection.define(
     phone: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        is: {
+          args: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3,6}$/,
+          msg: "Error: Wrong phone format.",
+        },
+      },
     },
     logo: {
       type: DataTypes.BLOB,
@@ -21,6 +27,13 @@ const Company = connection.define(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+      validate: {
+        is: {
+          args: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          msg: "Error: Wrong email format.",
+        },
+      },
     },
   },
   {
