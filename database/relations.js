@@ -2,8 +2,8 @@ const Candidate = require("../api/models/candidate.model");
 const JobOpening = require("../api/models/job_opening.model");
 const Application = require("../api/models/application.model");
 const Company = require("../api/models/company.model");
-//const User = require("../api/models/user.model");
-//const Assignment = require("../api/models/assignment.model");
+const User = require("../api/models/user.model");
+const Assignment = require("../api/models/assignment.model");
 
 const defineRelations = () => {
   //ONE TO ONE
