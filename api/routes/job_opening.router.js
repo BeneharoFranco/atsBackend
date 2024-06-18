@@ -8,11 +8,16 @@ const {
     deleteJobOpening
 } = require("../controllers/job_opening.controller");
 
-router.get("/", getAllJobOpening);
-router.get("/:id", getOneJobOpening);
-router.post("/", createJobOpening);
-router.put('/:id', updateJobOpening)
-router.delete('/:id', deleteJobOpening)
+const {
+    checkAuth,
+    checkUser
+  } = require('../middlewares')
+
+router.get("/", checkAuth, checkUser, getAllJobOpening);
+router.get("/:id", checkAuth, checkUser, getOneJobOpening);
+router.post("/", checkAuth, checkUser, createJobOpening);
+router.put('/:id', checkAuth, checkUser, updateJobOpening)
+router.delete('/:id', checkAuth, checkUser, deleteJobOpening)
 
 module.exports = router;
 
