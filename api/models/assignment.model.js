@@ -13,8 +13,8 @@ const Assignment = connection.define(
     // status from 1 to 5 on DB; 
     //When we get the number in frontend we will change it to the specific status word
     status: {
-      type: DataTypes.ENUM('1', '2', '3', '4', '5'),
-      defaultValue: '1',
+      type: DataTypes.ENUM('open', 'closed', 'on hold'),
+      defaultValue: 'open',
       allowNull: false,
     },
   },
