@@ -13,17 +13,29 @@ const User = connection.define(
       allowNull: false,
     },
     role: {
-      type: DataTypes.ENUM("user", "admin"),
-      defaultValue: "user",
+      type: DataTypes.ENUM("recruiter", "admin"),
+      defaultValue: "recruiter",
       allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      validate: {
+        is: {
+          args: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          msg: "Error: Wrong email format.",
+        },
+      },
     },
     phone: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      validate: {
+        is: {
+          args: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3,6}$/,
+          msg: "Error: Wrong phone format.",
+        },
+      },
       allowNull: false,
     },
     password: {

@@ -8,10 +8,15 @@ const {
   deleteAssignment
 } = require("../controllers/assignment.controller");
 
-router.get("/", getAllAssignments);
-router.get("/:id", getOneAssignment);
-router.post("/", createAssignment);
-router.put("/:id", updateAssignment);
-router.delete("/:id", deleteAssignment);
+const {
+  checkAuth,
+  checkUser
+} = require('../middlewares')
+
+router.get("/", checkAuth, checkUser, getAllAssignments);
+router.get("/:id", checkAuth, checkUser, getOneAssignment);
+router.post("/", checkAuth, checkUser, createAssignment);
+router.put("/:id", checkAuth, checkUser, updateAssignment);
+router.delete("/:id", checkAuth, checkUser, deleteAssignment);
 
 module.exports = router;

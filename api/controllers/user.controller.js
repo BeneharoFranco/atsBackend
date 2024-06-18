@@ -1,5 +1,6 @@
 const Assignment = require("../models/assignment.model");
 const User = require("../models/user.model");
+const bcrypt = require("bcrypt");
 
 // GETTING ALL USERS FROM DB
 const getAllUsers = async (req, res) => {
@@ -28,19 +29,13 @@ const getOneUser = async (req, res) => {
 };
 
 // CREATING A NEW USER
-/* const createUser = async (req, res) => {
-  try {
-    const user = await User.create(req.body);
-    res.status(200).json({
-      result: user,
-    });
-  } catch (error) {
-    res.json("This error: " + error);
-  }
-}; */
 const createUser = async (req, res) => {
   try {
+    const salt = bcrypt.genSaltSync(10);
+    req.body.password = bcrypt.hashSync(req.body.password, salt);
+
     const user = await User.create(req.body);
+    
     res.status(200).json({
       result: user,
     });

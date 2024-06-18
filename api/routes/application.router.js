@@ -8,12 +8,16 @@ const {
   deleteApplication,
 } = require("../controllers/application.controller");
 
+const {
+  checkAuth,
+  checkUser
+} = require('../middlewares')
 
-router.get("/", getAllApplication);
-router.get("/:id", getOneApplication);
-router.post("/", createApplication);
-router.put("/:id", updateApplication);
-router.delete("/:id", deleteApplication);
+router.get("/", checkAuth, checkUser, getAllApplication);
+router.get("/:id", checkAuth, checkUser, getOneApplication);
+router.post("/", checkAuth, checkUser, createApplication);
+router.put("/:id", checkAuth, checkUser, updateApplication);
+router.delete("/:id", checkAuth, checkUser, deleteApplication);
 
 module.exports = router;
 
