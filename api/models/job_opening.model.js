@@ -10,9 +10,11 @@ const JobOpening = connection.define(
     },
     description: {
       type: DataTypes.TEXT,
+      allowNull: false,
     },
     location: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     posting_date: {
       type: DataTypes.DATE,
@@ -20,7 +22,8 @@ const JobOpening = connection.define(
       defaultValue: Sequelize.NOW,
     },
     status: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('Open', 'Closed', 'On hold'),
+      defaultValue: 'Open',
       allowNull: false,
     },
     end_date: {
