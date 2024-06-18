@@ -10,8 +10,12 @@ const Assignment = connection.define(
       autoIncrement: true,
       allowNull: false,
     },
+    // status from 1 to 5 on DB; 
+    //When we get the number in frontend we will change it to the specific status word
     status: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('1', '2', '3', '4', '5'),
+      defaultValue: '1',
+      allowNull: false,
     },
   },
   {
