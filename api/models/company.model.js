@@ -6,18 +6,21 @@ const Company = connection.define(
   {
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     address: {
       type: DataTypes.STRING,
     },
     phone: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     logo: {
       type: DataTypes.BLOB,
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {

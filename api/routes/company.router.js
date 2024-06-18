@@ -7,10 +7,15 @@ const {
   deleteCompany,
 } = require("../controllers/company.controller");
 
-router.get("/", getAllCompany);
-router.get("/:id", getOneCompany);
-router.post("/", createCompany);
-router.put("/:id", updateCompany);
-router.delete("/:id", deleteCompany);
+const {
+  checkAuth,
+  checkUser
+} = require('../middlewares')
+
+router.get("/", checkAuth, checkUser, getAllCompany);
+router.get("/:id", checkAuth, checkUser, getOneCompany);
+router.post("/", checkAuth, checkUser, createCompany);
+router.put("/:id", checkAuth, checkUser, updateCompany);
+router.delete("/:id", checkAuth, checkUser, deleteCompany);
 
 module.exports = router;
