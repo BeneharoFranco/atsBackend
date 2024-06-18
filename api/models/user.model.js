@@ -29,7 +29,13 @@ const User = connection.define(
       },
     },
     phone: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      validate: {
+        is: {
+          args: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3,6}$/,
+          msg: "Error: Wrong phone format.",
+        },
+      },
       allowNull: false,
     },
     password: {

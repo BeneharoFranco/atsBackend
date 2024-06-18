@@ -11,7 +11,9 @@ const Assignment = connection.define(
       allowNull: false,
     },
     status: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('Without seeing', 'First interview', 'Second interview', 'Hired'),
+      defaultValue: 'Without seeing',
+      allowNull: false,
     },
   },
   {
