@@ -10,8 +10,7 @@ const Assignment = connection.define(
       autoIncrement: true,
       allowNull: false,
     },
-    // status from 1 to 5 on DB; 
-    //When we get the number in frontend we will change it to the specific status word
+
     status: {
       type: DataTypes.ENUM('Without seeing', 'First interview', 'Second interview', 'Hired'),
       defaultValue: 'Without seeing',
@@ -24,3 +23,4 @@ const Assignment = connection.define(
 );
 
 module.exports = Assignment;
+
