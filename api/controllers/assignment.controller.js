@@ -30,17 +30,18 @@ const createAssignment = async (req, res) => {
   try {
     const user = await User.findByPk(req.body.userId);
     if (user == null) {
-      return res.status(404).send("User not found or not exist");
+      return res.status(404).send("User not found");
     }
 
     const jobOpening = await JobOpening.findByPk(req.body.jobOpeningId);
     if (jobOpening == null) {
-      return res.status(404).send("jobOpening not found or not exist");
+      return res.status(404).send("JobOpening not found");
     }
 
     const assignment = await Assignment.create(req.body);
-    res.status(200).json({  result: assignment,   });
-
+    res.json({
+      result: assignment,
+    });
   } catch (error) {
     return res.status(500).send(error.message);
   }
@@ -49,41 +50,33 @@ const createAssignment = async (req, res) => {
 async function updateAssignment(req, res) {
   
   try {
-    const user = await User.findByPk(req.body.userId);
+    const user = await User.findByPk(req.body.user_id);
     if (user == null) {
       return res.status(404).send("User not found or not exist");
     }
 
-    const jobOpening = await JobOpening.findByPk(req.body.jobOpeningId);
+    const jobOpening = await JobOpening.findByPk(req.body.jobOpening_id);
     if (jobOpening == null) {
       return res.status(404).send("jobOpening not found or not exist");
     }
 
-    const [assignmentRows, assignment] = await Assignment.update(req.body,
-     {
-        where: {
-          id: req.params.id
-        }
-      }
-    );
-
-    if (assignmentRows !== 0){
-      res.status(200).json({
-        message: "Assignment updated",
-        assignment: assignment,
-      });
-    }else{
-      return res.status(404).send("Assignment not found or not exist");
-    }
-
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      message: "Error updating Assignment",
-      result: error,
+    const [assignmentExist, assignment] = await Assignment.update(req.body, {
+      returning: true,
+      where: {
+        id: req.params.id,
+      },
     });
+    if (assignmentExist !== 0) {
+      return res
+        .status(200)
+        .json({ message: "Assignment updated", assignment: assignment });
+    } else {
+      return res.status(404).send("Assignment not found");
+    }
+  } catch (error) {
+    return res.status(500).send(error.message);
   }
-};
+}
 
 async function deleteAssignment(req, res) {
   try {

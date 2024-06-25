@@ -18,11 +18,8 @@ const defineRelations = () => {
   Candidate.belongsToMany(JobOpening, { through: Application, onDelete: 'cascade', onUpdate: 'cascade' });
   JobOpening.belongsToMany(Candidate, { through: Application, onDelete: 'cascade', onUpdate: 'cascade' });
 
-    User.belongsToMany(JobOpening, { through: Assignment });
-    JobOpening.belongsToMany(User, { through: Assignment });
-  
-
-
+  User.belongsToMany(JobOpening, { through: Assignment });
+  JobOpening.belongsToMany(User, { through: Assignment });
   
   console.log("Relations defined");
 };
