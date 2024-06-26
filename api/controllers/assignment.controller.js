@@ -48,15 +48,16 @@ const createAssignment = async (req, res) => {
 };
 
 async function updateAssignment(req, res) {
+  
   try {
-    if(req.body.userId){
-      const user = await User.findByPk(req.body.userId);
-      if (user == null) return res.status(404).send("User not found");
+    const user = await User.findByPk(req.body.user_id);
+    if (user == null) {
+      return res.status(404).send("User not found or not exist");
     }
 
-    if(req.body.jobOpeningId){
-      const jobOpening = await JobOpening.findByPk(req.body.jobOpeningId);
-      if (jobOpening == null) return res.status(404).send("JobOpening not found");
+    const jobOpening = await JobOpening.findByPk(req.body.jobOpening_id);
+    if (jobOpening == null) {
+      return res.status(404).send("jobOpening not found or not exist");
     }
 
     const [assignmentExist, assignment] = await Assignment.update(req.body, {

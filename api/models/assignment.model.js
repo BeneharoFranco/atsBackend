@@ -10,6 +10,7 @@ const Assignment = connection.define(
       autoIncrement: true,
       allowNull: false,
     },
+
     status: {
       type: DataTypes.ENUM('Without seeing', 'First interview', 'Second interview', 'Hired'),
       defaultValue: 'Without seeing',
@@ -22,3 +23,4 @@ const Assignment = connection.define(
 );
 
 module.exports = Assignment;
+

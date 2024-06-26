@@ -8,10 +8,7 @@ const {
   deleteUser,
 } = require("../controllers/user.controller");
 
-const {
-  checkAuth,
-  checkAdmin
-} = require('../middlewares')
+const { checkAuth, checkAdmin } = require("../middlewares");
 
 router.get("/", checkAuth, checkAdmin, getAllUsers);
 router.get("/:id", checkAuth, checkAdmin, getOneUser);

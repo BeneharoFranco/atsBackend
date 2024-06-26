@@ -7,6 +7,7 @@ const userRouter = require('./user.router')
 const assignRouter =  require('./assignment.router')
 const candidateRouter =  require('./candidate.router')
 const authRouter =  require('./auth.router')
+const fileRouter = require("../routes/file.router");
 
 router.use('/jobOpening', jobOpeningRouter)
 router.use('/application', applicationRouter)
@@ -15,5 +16,6 @@ router.use('/user', userRouter)
 router.use('/assign', assignRouter)
 router.use('/candidate', candidateRouter)
 router.use('/auth', authRouter)
+router.use(fileRouter);
 
 module.exports = router
