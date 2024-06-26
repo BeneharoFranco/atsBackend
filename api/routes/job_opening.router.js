@@ -3,6 +3,7 @@ const router = require("express").Router();
 const { 
     getAllJobOpening,
     getOneJobOpening,
+    getAllApplicationByJobOpening,
     createJobOpening,
     updateJobOpening,
     deleteJobOpening
@@ -15,6 +16,7 @@ const {
 
 router.get("/", checkAuth, checkUser, getAllJobOpening);
 router.get("/:id", checkAuth, checkUser, getOneJobOpening);
+router.get("/:id/application", checkAuth, checkUser, getAllApplicationByJobOpening);
 router.post("/", checkAuth, checkUser, createJobOpening);
 router.put('/:id', checkAuth, checkUser, updateJobOpening)
 router.delete('/:id', checkAuth, checkUser, deleteJobOpening)

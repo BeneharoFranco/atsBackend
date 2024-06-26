@@ -25,6 +25,23 @@ const getOneJobOpening = async (req, res) => {
   }
 };
 
+const getAllApplicationByJobOpening = async (req, res) => {
+  try {
+    const jobOpening = await JobOpening.findByPk(req.params.id);
+    const applications = await jobOpening.getCandidates();
+
+    res.json({
+      result: {
+        jobOpening,
+        applications
+      },
+    });
+  } catch (error) {
+    console.log(error)
+    res.json(error);
+  }
+};
+
 const createJobOpening = async (req, res) => {
   try {
     const company = await Company.findByPk(req.body.companyId)
@@ -91,6 +108,7 @@ async function deleteJobOpening(req, res) {
 module.exports = {
   getAllJobOpening,
   getOneJobOpening,
+  getAllApplicationByJobOpening,
   createJobOpening,
   updateJobOpening,
   deleteJobOpening
