@@ -38,6 +38,8 @@ const getOneCandidate = async (req, res) => {
 
 const createCandidate = async (req, res) => {
     try {
+        const json = JSON.stringify(req.body);
+        // const candidate = await Candidate.create(json);
         const candidate = await Candidate.create(req.body);
         res.status(201).json({
             message: 'Candidate created',
